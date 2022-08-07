@@ -11,6 +11,10 @@
 		7066536A289F965100972500 /* APODResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70665369289F965100972500 /* APODResponse.swift */; };
 		7066536D289FA33100972500 /* ResultState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7066536C289FA33100972500 /* ResultState.swift */; };
 		70665370289FA81700972500 /* APODViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7066536F289FA81700972500 /* APODViewModel.swift */; };
+		70665373289FBBFD00972500 /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70665372289FBBFD00972500 /* Date+Formatter.swift */; };
+		70665376289FBF9A00972500 /* APODStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70665375289FBF9A00972500 /* APODStorage.swift */; };
+		7066537B289FD85F00972500 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70665379289FD85F00972500 /* DataStore.xcdatamodeld */; };
+		7066537D289FDC3D00972500 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7066537C289FDC3D00972500 /* PersistenceController.swift */; };
 		70DB6F3F289EB9160075A311 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DB6F3E289EB9160075A311 /* AppDelegate.swift */; };
 		70DB6F41289EB9160075A311 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DB6F40289EB9160075A311 /* SceneDelegate.swift */; };
 		70DB6F43289EB9160075A311 /* PODTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DB6F42289EB9160075A311 /* PODTabBarController.swift */; };
@@ -48,6 +52,10 @@
 		70665369289F965100972500 /* APODResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODResponse.swift; sourceTree = "<group>"; };
 		7066536C289FA33100972500 /* ResultState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultState.swift; sourceTree = "<group>"; };
 		7066536F289FA81700972500 /* APODViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODViewModel.swift; sourceTree = "<group>"; };
+		70665372289FBBFD00972500 /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
+		70665375289FBF9A00972500 /* APODStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODStorage.swift; sourceTree = "<group>"; };
+		7066537A289FD85F00972500 /* APODStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = APODStore.xcdatamodel; sourceTree = "<group>"; };
+		7066537C289FDC3D00972500 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		70DB6F3B289EB9160075A311 /* NasaPictureOfTheDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaPictureOfTheDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70DB6F3E289EB9160075A311 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70DB6F40289EB9160075A311 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,8 +136,35 @@
 			isa = PBXGroup;
 			children = (
 				7066536F289FA81700972500 /* APODViewModel.swift */,
+				7066536C289FA33100972500 /* ResultState.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		70665371289FB78500972500 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				70DB6F6E289EBA640075A311 /* APOD.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		70665374289FBF7B00972500 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				70665375289FBF9A00972500 /* APODStorage.swift */,
+				706653A1289FFC7000972500 /* CoreData */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		706653A1289FFC7000972500 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				70665379289FD85F00972500 /* DataStore.xcdatamodeld */,
+				7066537C289FDC3D00972500 /* PersistenceController.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		70DB6F32289EB9160075A311 = {
@@ -158,13 +193,14 @@
 				70DB6F3E289EB9160075A311 /* AppDelegate.swift */,
 				70DB6F40289EB9160075A311 /* SceneDelegate.swift */,
 				70F98E4F289EE93F0027BFCB /* Network */,
+				70665374289FBF7B00972500 /* Storage */,
 				7066536E289FA7C100972500 /* ViewModel */,
+				70665371289FB78500972500 /* Model */,
 				70DB6F74289ED9490075A311 /* ViewControllers */,
-				70DB6F6E289EBA640075A311 /* APOD.swift */,
-				7066536C289FA33100972500 /* ResultState.swift */,
 				70DB6F47289EB91A0075A311 /* Assets.xcassets */,
 				70DB6F49289EB91A0075A311 /* LaunchScreen.storyboard */,
 				70DB6F4C289EB91A0075A311 /* Info.plist */,
+				70665372289FBBFD00972500 /* Date+Formatter.swift */,
 			);
 			path = NasaPictureOfTheDay;
 			sourceTree = "<group>";
@@ -347,12 +383,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				70665370289FA81700972500 /* APODViewModel.swift in Sources */,
+				70665373289FBBFD00972500 /* Date+Formatter.swift in Sources */,
 				70DB6F43289EB9160075A311 /* PODTabBarController.swift in Sources */,
 				70665365289F8F4E00972500 /* APODService.swift in Sources */,
 				7066536D289FA33100972500 /* ResultState.swift in Sources */,
 				7066536A289F965100972500 /* APODResponse.swift in Sources */,
+				70665376289FBF9A00972500 /* APODStorage.swift in Sources */,
 				70DB6F73289EC7CA0075A311 /* PODViewController.swift in Sources */,
 				70F98E51289EEC720027BFCB /* APIBuilder.swift in Sources */,
+				7066537D289FDC3D00972500 /* PersistenceController.swift in Sources */,
+				7066537B289FD85F00972500 /* DataStore.xcdatamodeld in Sources */,
 				70DB6F6F289EBA640075A311 /* APOD.swift in Sources */,
 				70DB6F3F289EB9160075A311 /* AppDelegate.swift in Sources */,
 				70F98E59289F1DFD0027BFCB /* APIError.swift in Sources */,
@@ -698,6 +738,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70665379289FD85F00972500 /* DataStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7066537A289FD85F00972500 /* APODStore.xcdatamodel */,
+			);
+			currentVersion = 7066537A289FD85F00972500 /* APODStore.xcdatamodel */;
+			path = DataStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 70DB6F33289EB9160075A311 /* Project object */;
 }

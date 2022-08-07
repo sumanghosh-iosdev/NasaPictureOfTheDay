@@ -12,7 +12,7 @@ struct APODResponse: Codable {
     let serviceVersion: String
     let title: String
     let url: String
-    let copyright: String
+    let copyright: String?
     
     enum CodingKeys: String, CodingKey {
         case date, explanation, hdurl, copyright

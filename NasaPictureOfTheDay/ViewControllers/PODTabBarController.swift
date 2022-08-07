@@ -8,9 +8,8 @@ class PODTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(NSHomeDirectory())
         // Do any additional setup after loading the view.
     }
-
-
 }
 
