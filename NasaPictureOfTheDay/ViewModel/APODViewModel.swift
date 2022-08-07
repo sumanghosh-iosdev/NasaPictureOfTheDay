@@ -51,7 +51,7 @@ class APODViewModelImpl: APODViewModel {
                 self.storage.store(apod: pictureOfTheDay)
                 completion(self.state)
             case .failure(let error):
-                self.state = .failed(error: error)
+                self.state = .failed(error: error.localizedDescription)
                 completion(self.state)
             }
         }

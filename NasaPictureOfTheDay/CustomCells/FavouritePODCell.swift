@@ -12,7 +12,6 @@ class FavouritePODCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func configureCell(with pictureModel: APOD) {
@@ -21,7 +20,10 @@ class FavouritePODCell: UITableViewCell {
         }
         
         titleLabel.text = pictureModel.title
-        publishedDate.text = pictureModel.date
+        
+        let publisedDate = Date.dateForm(string: pictureModel.date)
+        
+        publishedDate.text = publisedDate.stringFormat(with: "dd-MMM-YYYY")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

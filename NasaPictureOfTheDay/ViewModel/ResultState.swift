@@ -7,5 +7,5 @@ import Foundation
 enum APODResultState {
     case loading
     case success(pod: APOD)
-    case failed(error: Error)
+    case failed(error: String)
 }

@@ -220,8 +220,8 @@
 				70DB6F40289EB9160075A311 /* SceneDelegate.swift */,
 				70F98E4F289EE93F0027BFCB /* Network */,
 				70665374289FBF7B00972500 /* Storage */,
-				7066536E289FA7C100972500 /* ViewModel */,
 				70665371289FB78500972500 /* Model */,
+				7066536E289FA7C100972500 /* ViewModel */,
 				70DB6F74289ED9490075A311 /* ViewControllers */,
 				706653A728A0305200972500 /* CustomCells */,
 				706653A628A0304100972500 /* Extensions */,
@@ -252,10 +252,10 @@
 		70DB6F74289ED9490075A311 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				70DB6F75289ED9620075A311 /* Storyboard */,
 				70DB6F42289EB9160075A311 /* PODTabBarController.swift */,
 				70DB6F72289EC7CA0075A311 /* PODViewController.swift */,
 				706653A228A0266B00972500 /* FavouritesViewController.swift */,
+				70DB6F75289ED9620075A311 /* Storyboard */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

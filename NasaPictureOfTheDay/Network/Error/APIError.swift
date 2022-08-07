@@ -7,6 +7,7 @@ import Foundation
 enum APIError: Error {
     case parsingError
     case errorCode(Int)
+    case noNetwork
     case unknown
 }
 
@@ -20,6 +21,8 @@ extension APIError: LocalizedError {
             return "Request failed error code: \(code)"
         case .unknown:
             return "Unknown error."
+        case .noNetwork:
+            return "The Internet connection appears to be offline."
         }
     }
 }

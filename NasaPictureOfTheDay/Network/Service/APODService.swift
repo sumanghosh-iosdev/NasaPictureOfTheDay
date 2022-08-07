@@ -13,6 +13,8 @@ struct APODServiceImpl: APODService {
     
     var urlSession: URLSession
     
+    let noInternetErrorCodes: [Int] = [-5, -1009, NSURLErrorNetworkConnectionLost, NSURLErrorNotConnectedToInternet]
+    
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
     }
@@ -21,6 +23,14 @@ struct APODServiceImpl: APODService {
                  completion: @escaping (Result<APODResponse, APIError>) -> Void) {
         
         urlSession.dataTask(with: endpoint.urlRequest) { data, response, error in
+            
+            if let error = error as? NSError {
+                if noInternetErrorCodes.contains(error.code) {
+                    completion(.failure(.noNetwork))
+                }
+                
+                completion(.failure(.errorCode(error.code)))
+            }
             
             guard let response = response as? HTTPURLResponse,
                   let data = data else {

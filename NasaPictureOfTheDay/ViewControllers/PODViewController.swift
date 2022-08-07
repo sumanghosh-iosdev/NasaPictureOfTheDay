@@ -16,6 +16,7 @@ class PODViewController: UIViewController {
     
     private let viewModel: APODViewModel = APODViewModelImpl()
     private var pictureOfTheDay: APOD?
+    private var selectedDate: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +24,18 @@ class PODViewController: UIViewController {
         configureView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateData()
+    }
+    
     private func configureView() {
-        let date = Date().stringFormat()
-        loadData(for: date)
-        
         configureDatePicker()
+    }
+    
+    private func updateData() {
+        let date = selectedDate.stringFormat()
+        loadData(for: date)
     }
     
     private func configureDatePicker() {
@@ -40,10 +48,10 @@ class PODViewController: UIViewController {
     
     private func loadData(for date: String) {
         self.startActivityIndicator()
-
+        
         viewModel.getAPOD(date: date) { [weak self] state in
             guard let self = self else { return }
-
+            
             DispatchQueue.main.async {
                 switch state {
                 case .loading:
@@ -51,8 +59,10 @@ class PODViewController: UIViewController {
                 case .success(let pod):
                     self.pictureOfTheDay = pod
                     self.setupView()
-                case .failed(let error):
-                    print(error)
+                case .failed(let errorMessage):
+                    print(errorMessage)
+                    self.showAlert(title: "Failed to load data.",
+                                   message: errorMessage)
                     self.stopActivityIndicator()
                 }
             }
@@ -69,8 +79,7 @@ class PODViewController: UIViewController {
         titleLabel.text = pictureOfTheDay.title
         dateLabel.text = "Published date: \(pictureOfTheDay.date)"
         explationTextView.text = pictureOfTheDay.explanation
-        
-       updateFavouriteButton()
+        updateFavouriteButton()
     }
     
     private func updateFavouriteButton() {
@@ -79,6 +88,9 @@ class PODViewController: UIViewController {
             buttonImage = Constants.filledStarImage
         }
         
+        favouriteButton.isHidden = false
+        favouriteButton.layer.borderColor = UIColor.black.cgColor
+        favouriteButton.layer.borderWidth = 1.0
         favouriteButton.setImage(buttonImage, for: .normal)
     }
     
@@ -94,7 +106,7 @@ class PODViewController: UIViewController {
             viewModel.fetchImageData(for: pictureOfTheDay.url,
                                      publisedDate: pictureOfTheDay.date) { [weak self] imageData in
                 guard let self = self else { return }
-
+                
                 if let imageData = imageData {
                     self.pictureOfTheDay?.imageData = imageData
                     podImageView.image = UIImage(data: imageData)
@@ -103,7 +115,6 @@ class PODViewController: UIViewController {
             }
         }
     }
-    
     
     @IBAction func markFavourite(_ sender: Any) {
         guard let pictureOfTheDay = pictureOfTheDay else {
@@ -123,8 +134,14 @@ class PODViewController: UIViewController {
         print("Selected date \(datePicker.date)")
         presentedViewController?.dismiss(animated: false, completion: nil)
         
-        let date = datePicker.date.stringFormat()
+        selectedDate = datePicker.date
+        let date = selectedDate.stringFormat()
         loadData(for: date)
+    }
+    
+    func selectDate(date: String) {
+        datePicker.date = Date.dateForm(string: date)
+        onDateSelection()
     }
 }
 
@@ -146,5 +163,16 @@ extension PODViewController {
     private func stopActivityIndicator() {
         activityIndicatorView.stopAnimating()
         activityIndicatorView.isHidden = true
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: .default,
+                                      handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
