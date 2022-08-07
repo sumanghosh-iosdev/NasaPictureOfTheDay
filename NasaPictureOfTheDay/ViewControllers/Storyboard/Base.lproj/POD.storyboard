@@ -143,12 +143,17 @@
                                     <action selector="markFavourite:" destination="piG-tg-ezZ" eventType="touchUpInside" id="4UX-Qz-fqC"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="57g-ks-X1h">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZqB-cY-uc6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ugq-dx-jlX" secondAttribute="trailing" id="0ZU-jT-90Q"/>
                             <constraint firstItem="ugq-dx-jlX" firstAttribute="top" secondItem="ZqB-cY-uc6" secondAttribute="top" constant="10" id="6WK-AM-huw"/>
+                            <constraint firstItem="57g-ks-X1h" firstAttribute="centerX" secondItem="KRY-D0-zau" secondAttribute="centerX" id="BE5-LY-iQZ"/>
+                            <constraint firstItem="57g-ks-X1h" firstAttribute="centerY" secondItem="KRY-D0-zau" secondAttribute="centerY" id="DAs-dk-RtW"/>
                             <constraint firstItem="ZqB-cY-uc6" firstAttribute="trailing" secondItem="l2M-Yi-P4M" secondAttribute="trailing" id="EN4-9D-nRh"/>
                             <constraint firstItem="ZqB-cY-uc6" firstAttribute="trailing" secondItem="kcB-Rg-o2h" secondAttribute="trailing" id="GjV-qU-uOd"/>
                             <constraint firstItem="gpR-h0-DqC" firstAttribute="top" secondItem="l2M-Yi-P4M" secondAttribute="bottom" constant="22" id="JNa-zH-4KW"/>
@@ -163,6 +168,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="POD" image="externaldrive" catalog="system" id="sCv-3C-RSs"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="57g-ks-X1h" id="VhH-Nu-WpQ"/>
                         <outlet property="dateLabel" destination="eRl-Vo-psD" id="CIk-pV-6bz"/>
                         <outlet property="datePicker" destination="ugq-dx-jlX" id="AdT-x8-Zhk"/>
                         <outlet property="explationTextView" destination="yNy-Yt-zm3" id="L0J-46-nL5"/>

@@ -12,7 +12,8 @@ class PODViewController: UIViewController {
     @IBOutlet private weak var explationTextView: UITextView!
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet private weak var datePicker: UIDatePicker!
-        
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     private let viewModel: APODViewModel = APODViewModelImpl()
     private var pictureOfTheDay: APOD?
     
@@ -38,20 +39,21 @@ class PODViewController: UIViewController {
     }
     
     private func loadData(for date: String) {
+        self.startActivityIndicator()
+
         viewModel.getAPOD(date: date) { [weak self] state in
             guard let self = self else { return }
 
             DispatchQueue.main.async {
                 switch state {
                 case .loading:
-                    print("loading")
-                    // show activity
+                    self.startActivityIndicator()
                 case .success(let pod):
                     self.pictureOfTheDay = pod
                     self.setupView()
                 case .failed(let error):
                     print(error)
-                    // failure view
+                    self.stopActivityIndicator()
                 }
             }
         }
@@ -87,13 +89,17 @@ class PODViewController: UIViewController {
         
         if let data = pictureOfTheDay.imageData {
             podImageView.image = UIImage(data: data)
+            self.stopActivityIndicator()
         } else {
             viewModel.fetchImageData(for: pictureOfTheDay.url,
-                                     publisedDate: pictureOfTheDay.date) { imageData in
+                                     publisedDate: pictureOfTheDay.date) { [weak self] imageData in
+                guard let self = self else { return }
+
                 if let imageData = imageData {
                     self.pictureOfTheDay?.imageData = imageData
                     podImageView.image = UIImage(data: imageData)
                 }
+                self.stopActivityIndicator()
             }
         }
     }
@@ -127,5 +133,18 @@ extension PODViewController {
     private enum Constants {
         static let starImage = UIImage(systemName: "star.square")
         static let filledStarImage = UIImage(systemName: "star.square.fill")
+    }
+}
+
+extension PODViewController {
+    
+    private func startActivityIndicator() {
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        activityIndicatorView.stopAnimating()
+        activityIndicatorView.isHidden = true
     }
 }
