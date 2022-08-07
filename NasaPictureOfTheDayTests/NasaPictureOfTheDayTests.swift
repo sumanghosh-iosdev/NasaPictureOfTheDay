@@ -32,5 +32,13 @@ class NasaPictureOfTheDayTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func mockSession() -> URLSession {
+        
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [URLProtocolStub.self]
+        let session = URLSession(configuration: configuration)
+        return session
+    }
 
 }

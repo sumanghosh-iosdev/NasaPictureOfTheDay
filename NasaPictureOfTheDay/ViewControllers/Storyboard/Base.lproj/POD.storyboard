@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="R6i-Om-ppu">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favourites-->
+        <scene sceneID="00k-4X-yi7">
+            <objects>
+                <viewController id="qHS-4J-xth" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8xS-7Q-3wC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hob-GQ-IJF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="star.fill" catalog="system" id="fcg-zd-92x"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="acv-mB-xhg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-164" y="253"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="4eC-1E-aSi">
+            <objects>
+                <tabBarController storyboardIdentifier="PODTabBarController" id="R6i-Om-ppu" customClass="PODTabBarController" customModule="NasaPictureOfTheDay" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="l8K-Zk-wis"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yIk-AK-Lpp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="piG-tg-ezZ" kind="relationship" relationship="viewControllers" id="q9s-0g-jIy"/>
+                        <segue destination="qHS-4J-xth" kind="relationship" relationship="viewControllers" id="2Ag-3X-tSn"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4qI-rQ-cb3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1052" y="-51"/>
+        </scene>
+        <!--Picture Of The Day-->
+        <scene sceneID="DPA-Xa-dEW">
+            <objects>
+                <viewController storyboardIdentifier="PODViewController" title="Picture Of The Day" useStoryboardIdentifierAsRestorationIdentifier="YES" id="piG-tg-ezZ" customClass="PODViewController" customModule="NasaPictureOfTheDay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KRY-D0-zau">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kcB-Rg-o2h">
+                                <rect key="frame" x="87" y="328" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="lCv-bG-gyq"/>
+                                    <constraint firstAttribute="width" constant="240" id="zLn-3q-Kf0"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZqB-cY-uc6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kcB-Rg-o2h" firstAttribute="centerY" secondItem="KRY-D0-zau" secondAttribute="centerY" id="x6e-XO-yM5"/>
+                            <constraint firstItem="kcB-Rg-o2h" firstAttribute="centerX" secondItem="KRY-D0-zau" secondAttribute="centerX" id="z9f-vX-Xb3"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="POD" image="externaldrive" catalog="system" id="sCv-3C-RSs"/>
+                    <connections>
+                        <outlet property="podImageView" destination="kcB-Rg-o2h" id="mfM-c9-v7s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MGf-F3-o6m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="55" y="-463"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="externaldrive" catalog="system" width="128" height="88"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
