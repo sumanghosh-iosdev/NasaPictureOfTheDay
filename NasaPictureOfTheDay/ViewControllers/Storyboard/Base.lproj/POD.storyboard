@@ -84,10 +84,6 @@
                                     <constraint firstAttribute="height" constant="240" id="YyM-Ue-ZnL"/>
                                 </constraints>
                             </imageView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="ugq-dx-jlX">
-                                <rect key="frame" x="0.0" y="54" width="414" height="31"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APOD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKJ-Ic-UWx">
                                 <rect key="frame" x="184" y="59" width="46" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -154,17 +150,23 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="57g-ks-X1h">
                                 <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                             </activityIndicatorView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="ugq-dx-jlX">
+                                <rect key="frame" x="289" y="54" width="120" height="31"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="wVl-fh-e8F"/>
+                                </constraints>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZqB-cY-uc6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ugq-dx-jlX" secondAttribute="trailing" id="0ZU-jT-90Q"/>
                             <constraint firstItem="ugq-dx-jlX" firstAttribute="top" secondItem="ZqB-cY-uc6" secondAttribute="top" constant="10" id="6WK-AM-huw"/>
-                            <constraint firstItem="PKJ-Ic-UWx" firstAttribute="centerY" secondItem="ugq-dx-jlX" secondAttribute="centerY" id="9UF-Ad-Rdu"/>
                             <constraint firstItem="57g-ks-X1h" firstAttribute="centerX" secondItem="KRY-D0-zau" secondAttribute="centerX" id="BE5-LY-iQZ"/>
                             <constraint firstItem="57g-ks-X1h" firstAttribute="centerY" secondItem="KRY-D0-zau" secondAttribute="centerY" id="DAs-dk-RtW"/>
                             <constraint firstItem="ZqB-cY-uc6" firstAttribute="trailing" secondItem="kcB-Rg-o2h" secondAttribute="trailing" id="GjV-qU-uOd"/>
-                            <constraint firstItem="ugq-dx-jlX" firstAttribute="leading" secondItem="ZqB-cY-uc6" secondAttribute="leading" id="ZOL-aH-EuC"/>
+                            <constraint firstItem="PKJ-Ic-UWx" firstAttribute="centerY" secondItem="ugq-dx-jlX" secondAttribute="centerY" id="H5l-nn-91H"/>
+                            <constraint firstItem="ZqB-cY-uc6" firstAttribute="trailing" secondItem="ugq-dx-jlX" secondAttribute="trailing" constant="5" id="JD3-BE-7WI"/>
                             <constraint firstItem="kcB-Rg-o2h" firstAttribute="top" secondItem="ZqB-cY-uc6" secondAttribute="top" constant="60" id="Zov-eJ-h86"/>
                             <constraint firstItem="ZqB-cY-uc6" firstAttribute="trailing" secondItem="gpR-h0-DqC" secondAttribute="trailing" constant="5" id="hms-aC-AJt"/>
                             <constraint firstItem="gpR-h0-DqC" firstAttribute="leading" secondItem="ZqB-cY-uc6" secondAttribute="leading" constant="5" id="ks8-Bp-llS"/>

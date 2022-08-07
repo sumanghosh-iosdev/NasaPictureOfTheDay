@@ -40,7 +40,7 @@ class PODViewController: UIViewController {
     
     private func configureDatePicker() {
         datePicker.maximumDate = Date()
-        datePicker.backgroundColor = .white
+        datePicker.backgroundColor = .systemBackground
         datePicker.timeZone = .current
         datePicker.addTarget(self, action: #selector(onDateSelection),
                              for: .valueChanged)
@@ -89,7 +89,7 @@ class PODViewController: UIViewController {
         }
         
         favouriteButton.isHidden = false
-        favouriteButton.layer.borderColor = UIColor.black.cgColor
+        favouriteButton.layer.borderColor = UIColor.label.cgColor
         favouriteButton.layer.borderWidth = 1.0
         favouriteButton.setImage(buttonImage, for: .normal)
     }
