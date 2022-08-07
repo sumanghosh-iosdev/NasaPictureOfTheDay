@@ -110,7 +110,7 @@ extension APODStorageImpl {
     func getFavourites() -> [APODData] {
         let context = persistenceController.container.viewContext
         let fetchRequest = APODData.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isFavourite = %@", true)
+        fetchRequest.predicate = NSPredicate(format: "isFavourite = true")
         
         do {
             let items = try context.fetch(fetchRequest)

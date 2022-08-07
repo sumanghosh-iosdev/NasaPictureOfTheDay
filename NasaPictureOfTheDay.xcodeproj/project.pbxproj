@@ -15,6 +15,10 @@
 		70665376289FBF9A00972500 /* APODStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70665375289FBF9A00972500 /* APODStorage.swift */; };
 		7066537B289FD85F00972500 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70665379289FD85F00972500 /* DataStore.xcdatamodeld */; };
 		7066537D289FDC3D00972500 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7066537C289FDC3D00972500 /* PersistenceController.swift */; };
+		706653A328A0266B00972500 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706653A228A0266B00972500 /* FavouritesViewController.swift */; };
+		706653A528A02DBC00972500 /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706653A428A02DBC00972500 /* FavouriteViewModel.swift */; };
+		706653AA28A0307500972500 /* FavouritePODCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706653A828A0307500972500 /* FavouritePODCell.swift */; };
+		706653AB28A0307500972500 /* FavouritePODCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 706653A928A0307500972500 /* FavouritePODCell.xib */; };
 		70DB6F3F289EB9160075A311 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DB6F3E289EB9160075A311 /* AppDelegate.swift */; };
 		70DB6F41289EB9160075A311 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DB6F40289EB9160075A311 /* SceneDelegate.swift */; };
 		70DB6F43289EB9160075A311 /* PODTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DB6F42289EB9160075A311 /* PODTabBarController.swift */; };
@@ -56,6 +60,10 @@
 		70665375289FBF9A00972500 /* APODStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODStorage.swift; sourceTree = "<group>"; };
 		7066537A289FD85F00972500 /* APODStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = APODStore.xcdatamodel; sourceTree = "<group>"; };
 		7066537C289FDC3D00972500 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		706653A228A0266B00972500 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		706653A428A02DBC00972500 /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
+		706653A828A0307500972500 /* FavouritePODCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePODCell.swift; sourceTree = "<group>"; };
+		706653A928A0307500972500 /* FavouritePODCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritePODCell.xib; sourceTree = "<group>"; };
 		70DB6F3B289EB9160075A311 /* NasaPictureOfTheDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaPictureOfTheDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70DB6F3E289EB9160075A311 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70DB6F40289EB9160075A311 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				7066536F289FA81700972500 /* APODViewModel.swift */,
+				706653A428A02DBC00972500 /* FavouriteViewModel.swift */,
 				7066536C289FA33100972500 /* ResultState.swift */,
 			);
 			path = ViewModel;
@@ -165,6 +174,23 @@
 				7066537C289FDC3D00972500 /* PersistenceController.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		706653A628A0304100972500 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				70665372289FBBFD00972500 /* Date+Formatter.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		706653A728A0305200972500 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				706653A828A0307500972500 /* FavouritePODCell.swift */,
+				706653A928A0307500972500 /* FavouritePODCell.xib */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		70DB6F32289EB9160075A311 = {
@@ -197,10 +223,11 @@
 				7066536E289FA7C100972500 /* ViewModel */,
 				70665371289FB78500972500 /* Model */,
 				70DB6F74289ED9490075A311 /* ViewControllers */,
+				706653A728A0305200972500 /* CustomCells */,
+				706653A628A0304100972500 /* Extensions */,
 				70DB6F47289EB91A0075A311 /* Assets.xcassets */,
 				70DB6F49289EB91A0075A311 /* LaunchScreen.storyboard */,
 				70DB6F4C289EB91A0075A311 /* Info.plist */,
-				70665372289FBBFD00972500 /* Date+Formatter.swift */,
 			);
 			path = NasaPictureOfTheDay;
 			sourceTree = "<group>";
@@ -228,6 +255,7 @@
 				70DB6F75289ED9620075A311 /* Storyboard */,
 				70DB6F42289EB9160075A311 /* PODTabBarController.swift */,
 				70DB6F72289EC7CA0075A311 /* PODViewController.swift */,
+				706653A228A0266B00972500 /* FavouritesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -356,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DB6F4B289EB91A0075A311 /* LaunchScreen.storyboard in Resources */,
+				706653AB28A0307500972500 /* FavouritePODCell.xib in Resources */,
 				70DB6F48289EB91A0075A311 /* Assets.xcassets in Resources */,
 				70DB6F46289EB9160075A311 /* POD.storyboard in Resources */,
 			);
@@ -382,7 +411,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				706653A328A0266B00972500 /* FavouritesViewController.swift in Sources */,
+				706653AA28A0307500972500 /* FavouritePODCell.swift in Sources */,
 				70665370289FA81700972500 /* APODViewModel.swift in Sources */,
+				706653A528A02DBC00972500 /* FavouriteViewModel.swift in Sources */,
 				70665373289FBBFD00972500 /* Date+Formatter.swift in Sources */,
 				70DB6F43289EB9160075A311 /* PODTabBarController.swift in Sources */,
 				70665365289F8F4E00972500 /* APODService.swift in Sources */,

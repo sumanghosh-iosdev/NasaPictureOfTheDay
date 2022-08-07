@@ -11,8 +11,10 @@ protocol APODViewModel {
     func fetchImageData(for url: String,
                         publisedDate: String,
                         completion: (Data?) -> Void)
+    
+    func updateFavouritePOD(for publishedDate: String,
+                            isFavourited: Bool)
 }
-
 
 class APODViewModelImpl: APODViewModel {
     
@@ -66,8 +68,14 @@ class APODViewModelImpl: APODViewModel {
                 completion(data)
             }
         } catch {
-            completion(nil)
             print("Failed to laod image: \(error)")
+            completion(nil)
         }
+    }
+    
+    func updateFavouritePOD(for publishedDate: String,
+                            isFavourited: Bool) {
+        self.storage.updateFavourite(for: publishedDate,
+                                     isFavourite: isFavourited)
     }
 }

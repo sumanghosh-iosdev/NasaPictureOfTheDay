@@ -11,6 +11,7 @@ struct APOD: Codable {
     let mediaType: String
     let url: String
     var imageData: Data? = nil
+    var isFavourite: Bool = false
 }
 
 extension APOD {
@@ -29,7 +30,8 @@ extension APOD {
                   explanation: data.explanation ?? "",
                   mediaType: data.mediaType ?? "",
                   url: data.imageURL ?? "",
-                  imageData: data.image)
+                  imageData: data.image,
+                  isFavourite: data.isFavourite)
     }
 }
 
