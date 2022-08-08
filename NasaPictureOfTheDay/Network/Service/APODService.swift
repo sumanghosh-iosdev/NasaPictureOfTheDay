@@ -13,7 +13,9 @@ struct APODServiceImpl: APODService {
     
     var urlSession: URLSession
     
-    let noInternetErrorCodes: [Int] = [-5, -1009, NSURLErrorNetworkConnectionLost, NSURLErrorNotConnectedToInternet]
+    let noInternetErrorCodes: [Int] = [-5, -1009,
+                                        NSURLErrorNetworkConnectionLost,
+                                        NSURLErrorNotConnectedToInternet]
     
     init(urlSession: URLSession = URLSession(configuration: .default)) {
         self.urlSession = urlSession
@@ -30,6 +32,7 @@ struct APODServiceImpl: APODService {
                 }
                 
                 completion(.failure(.errorCode(error.code)))
+                return
             }
             
             guard let response = response as? HTTPURLResponse,
