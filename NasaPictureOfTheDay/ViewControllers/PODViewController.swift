@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import WebKit
 
 class PODViewController: UIViewController {
     
@@ -10,9 +11,12 @@ class PODViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var explationTextView: UITextView!
-    @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet private weak var favouriteButton: UIButton!
     @IBOutlet private weak var datePicker: UIDatePicker!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private weak var mediaView: UIView!
+    @IBOutlet private weak var wkWebView: WKWebView!
+   
     
     private let viewModel: APODViewModel = APODViewModelImpl()
     private var pictureOfTheDay: APOD?
@@ -20,7 +24,6 @@ class PODViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureView()
     }
     
@@ -74,7 +77,7 @@ class PODViewController: UIViewController {
             return
         }
         
-        updateImage()
+        configureMediaView(with: pictureOfTheDay)
         
         titleLabel.text = pictureOfTheDay.title
         dateLabel.text = "Published date: \(pictureOfTheDay.date)"
@@ -83,9 +86,9 @@ class PODViewController: UIViewController {
     }
     
     private func updateFavouriteButton() {
-        var buttonImage = Constants.starImage
+        var buttonImage = UIImage(systemName: Constants.starImage)
         if pictureOfTheDay?.isFavourite == true {
-            buttonImage = Constants.filledStarImage
+            buttonImage = UIImage(systemName: Constants.filledStarImage)
         }
         
         favouriteButton.isHidden = false
@@ -93,36 +96,13 @@ class PODViewController: UIViewController {
         favouriteButton.layer.borderWidth = 1.0
         favouriteButton.setImage(buttonImage, for: .normal)
     }
-    
-    private func updateImage() {
-        guard let pictureOfTheDay = pictureOfTheDay else {
-            return
-        }
         
-        if let data = pictureOfTheDay.imageData {
-            podImageView.image = UIImage(data: data)
-            self.stopActivityIndicator()
-        } else {
-            viewModel.fetchImageData(for: pictureOfTheDay.url,
-                                     publisedDate: pictureOfTheDay.date) { [weak self] imageData in
-                guard let self = self else { return }
-                
-                if let imageData = imageData {
-                    self.pictureOfTheDay?.imageData = imageData
-                    podImageView.image = UIImage(data: imageData)
-                }
-                self.stopActivityIndicator()
-            }
-        }
-    }
-    
     @IBAction func markFavourite(_ sender: Any) {
         guard let pictureOfTheDay = pictureOfTheDay else {
             return
         }
         
         let isFavourited = pictureOfTheDay.isFavourite
-        
         viewModel.updateFavouritePOD(for: pictureOfTheDay.date,
                                      isFavourited: !isFavourited)
         
@@ -145,27 +125,62 @@ class PODViewController: UIViewController {
     }
 }
 
+// Media View Setup...
 extension PODViewController {
     
-    private enum Constants {
-        static let starImage = UIImage(systemName: "star.square")
-        static let filledStarImage = UIImage(systemName: "star.square.fill")
+    private func configureMediaView(with mediaItem: APOD) {
+        if mediaItem.mediaType == .image {
+            podImageView.isHidden = false
+            wkWebView.isHidden = true
+            wkWebView.navigationDelegate = nil
+
+            configureImageView(with: mediaItem)
+        } else {
+            podImageView.isHidden = true
+            wkWebView.isHidden = false
+
+            configureViedeoLayer(with: mediaItem)
+        }
+    }
+    
+    private func configureViedeoLayer(with mediaItem: APOD) {
+        wkWebView.navigationDelegate = self
+        let request = viewModel.webViewLoadRequest(for: mediaItem.url)
+        wkWebView.load(request)
+    }
+    
+    private func configureImageView(with mediaItem: APOD) {
+        if let data = mediaItem.imageData {
+            podImageView.image = UIImage(data: data)
+            self.stopActivityIndicator()
+        } else {
+            viewModel.fetchImageData(for: mediaItem.url,
+                                     publisedDate: mediaItem.date) { [weak self] imageData in
+                guard let self = self else { return }
+                
+                if let imageData = imageData {
+                    self.pictureOfTheDay?.imageData = imageData
+                    podImageView.image = UIImage(data: imageData)
+                }
+                self.stopActivityIndicator()
+            }
+        }
     }
 }
 
 extension PODViewController {
     
-    private func startActivityIndicator() {
+    func startActivityIndicator() {
         activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
     }
     
-    private func stopActivityIndicator() {
+    func stopActivityIndicator() {
         activityIndicatorView.stopAnimating()
         activityIndicatorView.isHidden = true
     }
     
-    private func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)

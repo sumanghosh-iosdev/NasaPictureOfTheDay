@@ -17,6 +17,8 @@ class FavouritePODCell: UITableViewCell {
     func configureCell(with pictureModel: APOD) {
         if let imgData = pictureModel.imageData {
             favImageView.image = UIImage(data: imgData)
+        } else {
+            favImageView.image = UIImage(named: Constants.videoPlaceHolderImage)
         }
         
         titleLabel.text = pictureModel.title

@@ -35,8 +35,8 @@ extension APODStorageImpl {
         podData.title = apod.title
         podData.date = apod.date
         podData.explanation = apod.explanation
-        podData.mediaType = apod.mediaType
-        podData.imageURL = apod.url
+        podData.mediaType = apod.mediaType.rawValue
+        podData.mediaURL = apod.url
         podData.isFavourite = false
         
         do {

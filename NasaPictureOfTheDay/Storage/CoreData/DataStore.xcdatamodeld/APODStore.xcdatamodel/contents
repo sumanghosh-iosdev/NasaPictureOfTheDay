@@ -4,9 +4,9 @@
         <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="explanation" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
-        <attribute name="imageURL" optional="YES" attributeType="String"/>
         <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="mediaType" optional="YES" attributeType="String"/>
+        <attribute name="mediaURL" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>

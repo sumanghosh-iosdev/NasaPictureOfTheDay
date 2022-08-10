@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 protocol APODViewModel {
     func getAPOD(date: String,
@@ -11,7 +12,8 @@ protocol APODViewModel {
     func fetchImageData(for url: String,
                         publisedDate: String,
                         completion: (Data?) -> Void)
-    
+    func webViewLoadRequest(for url: String) -> URLRequest
+
     func updateFavouritePOD(for publishedDate: String,
                             isFavourited: Bool)
 }
@@ -31,8 +33,7 @@ class APODViewModelImpl: APODViewModel {
     func getAPOD(date: String,
                  completion: @escaping (APODResultState) -> Void) {
         state = .loading
-        if let storedPOD = storage.getAPOD(for: date),
-           storedPOD.image != nil {
+        if let storedPOD = storage.getAPOD(for: date) {
             let pictureOfTheDay = APOD(from: storedPOD)
             self.state = .success(pod: pictureOfTheDay)
             completion(self.state)
@@ -71,6 +72,13 @@ class APODViewModelImpl: APODViewModel {
             print("Failed to laod image: \(error)")
             completion(nil)
         }
+    }
+    
+    func webViewLoadRequest(for url: String) -> URLRequest {
+        let mediaURL = URL(string: url)!
+        let request = URLRequest(url: mediaURL,
+                                 cachePolicy: .returnCacheDataElseLoad)
+        return request
     }
     
     func updateFavouritePOD(for publishedDate: String,
